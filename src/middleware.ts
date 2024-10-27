@@ -10,7 +10,7 @@ export default function middleware(request: NextRequest){
         const response = NextResponse.redirect(new URL('/login', request.url)); 
         return response;
     }
-    
+
 }
 
 export const config = {
