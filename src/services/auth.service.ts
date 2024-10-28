@@ -13,8 +13,8 @@ export class AuthService{
         })
     }
 
-    public async  login(email: string, password: string): Promise<any> {
-        const response = await this.axios.post('users/login', {email, password});
-        return response.data;
+    public async login(email: string, password: string): Promise<any> {
+        const response = await this.axios.post('/auth/login', {email, password});
+        return response;
     }
 }

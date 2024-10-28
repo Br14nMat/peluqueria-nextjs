@@ -15,19 +15,21 @@ export default function usernamePage(){
         if (!username || !password)
             alert("Please enter username")
         else{
-            login(username, password)
-                .then(()=>router.push("/profile"))
+            let res = login(username, password)
+                .then(() => router.push("/profile"))
                 .catch( (e: Error) => {
                     console.error(e)
                     setUsername("");
                     setPassword("");                    
                     alert("Invalid Credentials")})
+
+            console.log(res)
         }
     }
     
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-100">
-            <div className="w-full max-w-sm p-8 bg-white rounded-lg shadow-lg">
+            <div className="w-full max-w-sm p-8 bg-white rounded-lg shadow-lg items-center">
                 
                 
                 <Image
@@ -41,7 +43,7 @@ export default function usernamePage(){
                 
                 <h1 className="text-2xl font-bold text-center mb-6 text-black">House Mafia</h1>
 
-                <label className="block mb-2 text-gray-700">Username</label>
+                <label className="block mb-2 text-gray-700">Email</label>
                 <input 
                     type="text" 
                     className="text-gray-700 w-full h-10 px-3 mb-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -57,12 +59,13 @@ export default function usernamePage(){
                     onChange={(e) => setPassword(e.target.value)} 
                 />
 
-                <button 
-                    className="w-full py-2 bg-black text-white rounded hover:bg-blue-500 transition-all"
-                    onClick={onSubmit}
-                >
-                    Login
-                </button>
+                <div className="w-full flex justify-center mt-4">
+                    <button 
+                        className="w-1/2 py-2 bg-black text-white rounded hover:bg-blue-500 transition-all"
+                        onClick={onSubmit}>
+                        Login
+                    </button>
+                </div>
             </div>
         </div>
 
