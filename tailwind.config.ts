@@ -11,6 +11,9 @@ const config: Config = {
       colors: {
         background: "#F2F2F2",
         foreground: "#D9D9D9",
+        navbar: "#2B2D42",
+        navbar_hover: "#8D99AE",
+        button_hover: "#EF233C"
       },
     },
   },

@@ -1,0 +1,7 @@
+.link{
+    @apply hover:underline  hover:text-navbar_hover mr-2 transition-all
+}
+
+.active {
+    @apply text-navbar_hover bg-amber-50
+}
