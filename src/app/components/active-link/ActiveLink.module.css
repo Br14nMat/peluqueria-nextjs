@@ -1,7 +1,8 @@
 .link{
-    @apply hover:underline  hover:text-navbar_hover mr-2 transition-all
+    @apply hover:underline  hover:text-navbar_hover mr-2 transition-all;
 }
 
 .active {
-    @apply text-navbar_hover bg-amber-50
+    @apply text-navbar_hover;
+    border-color: var(--navbar_hover);
 }

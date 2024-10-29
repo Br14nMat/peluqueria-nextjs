@@ -5,11 +5,11 @@ import { ActiveLink } from "../active-link/ActiveLink";
 
 const navItems = [
     {name:'Servicios', path: '/servicios'},
-    {name:'Reservas', path: '/reservas/all'},
+    {name:'Reservas', path: '/reservas'},
 ]
 export const Navbar = () => {
     return (
-      <nav className="flex bg-navbar bg-opacity-80 p-4 m-2">
+      <nav className="flex bg-navbar bg-opacity-80 p-4">
         <Link href="/" className="p-2 m-2 text-white">
             <HomeIcon className="mr-2" />
             <span>Home</span>
