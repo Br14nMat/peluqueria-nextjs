@@ -9,7 +9,7 @@ const ServiceCard = () => {
   return (
     <Card className="max-w-full min-w-full rounded-xl bg-foreground">
       <CardContent className="px-1 py-0 pt-1">
-        <div className="relative h-[159px] w-full">
+        <div className="relative h-[120px] w-full">
           <div className="absolute top-2 left-2 z-50">
             <Badge
               variant="secondary"
@@ -28,7 +28,9 @@ const ServiceCard = () => {
           <p className="text-sm text-navbar overflow-hidden text-ellipsis text-nowrap">
             qlok
           </p>
-          <button></button>
+          <button className="flex items-center justify-center p-3 rounded-lg bg-button_hover text-white hover:bg-gray-600 transition-all mx-4">
+            Reservar
+          </button>
         </div>
       </CardContent>
     </Card>
