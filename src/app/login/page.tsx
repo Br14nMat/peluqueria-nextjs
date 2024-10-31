@@ -16,14 +16,13 @@ export default function usernamePage(){
             alert("Please enter username")
         else{
             let res = login(username, password)
-                .then(() => router.push("/profile"))
+                .then(() => router.push("/"))
                 .catch( (e: Error) => {
                     console.error(e)
                     setUsername("");
                     setPassword("");                    
                     alert("Invalid Credentials")})
 
-            console.log(res)
         }
     }
     

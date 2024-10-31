@@ -4,8 +4,13 @@ import { StarIcon } from "@primer/octicons-react"
 import { Badge } from "./badge"
 import { Card, CardContent } from "./card"
 
-const ServiceCard = () => {
-  
+interface ServiceCardProps {
+  name: string;
+  price: number;
+  duration: number;
+}
+
+const ServiceCard: React.FC<ServiceCardProps> = ({ name, price, duration }) => {
   return (
     <Card className="max-w-full min-w-full rounded-xl bg-foreground">
       <CardContent className="px-1 py-0 pt-1">
@@ -16,17 +21,17 @@ const ServiceCard = () => {
               className=" text-black opacity-90 flex gap-1 items-center justify-center "
             >
               <StarIcon className="text-yellow-500"></StarIcon>
-              <span className="text-xs">5,0</span>
+              <span className="text-xs">{price.toFixed(1)}</span>
             </Badge>
           </div>
         </div>
 
         <div className="px-2 pb-3">
           <h1 className="text-black font-bold mt-2 overflow-hidden text-ellipsis text-nowrap">
-            Nombre
+            {name}
           </h1>
           <p className="text-sm text-navbar overflow-hidden text-ellipsis text-nowrap">
-            qlok
+            {duration}
           </p>
           <button className="flex items-center justify-center p-3 rounded-lg bg-button_hover text-white hover:bg-gray-600 transition-all mx-4">
             Reservar
