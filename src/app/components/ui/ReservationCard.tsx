@@ -1,18 +1,19 @@
 'use client'
 
-import { ClockIcon, StarIcon } from "@primer/octicons-react"
+import { CircleIcon, ClockIcon, StarIcon } from "@primer/octicons-react"
 import { Badge } from "./badge"
 import { Card, CardContent } from "./card"
 import { Service } from "@/services/services.service"
 
-interface ServiceCardProps {
-  name: string;
-  description: string;
-  price: number;
-  duration: number;
+interface ReservationCardProps {
+  reservationDate: Date;
+  serviceDate: Date;
+  status: string;
+  hairdresser: string;
+  service: string;
 }
 
-const ServiceCard: React.FC<ServiceCardProps> = ({ name, description, price, duration }) => {
+const ReservationCard: React.FC<ReservationCardProps> = ({ reservationDate, serviceDate, status, hairdresser, service}) => {
   return (
     <Card className="max-w-full min-w-full rounded-xl bg-foreground">
       <CardContent className="px-1 py-0 pt-1">
@@ -22,21 +23,21 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ name, description, price, dur
               variant="secondary"
               className=" text-black opacity-90 flex gap-1 items-center justify-center "
             >
-              <ClockIcon></ClockIcon>
-              <span className="text-xs">{duration.toFixed(1)}</span>
+              <CircleIcon></CircleIcon>
+              <span className="text-xs">{status}</span>
             </Badge>
           </div>
         </div>
 
         <div className="px-2 pb-3">
           <h1 className="text-black font-bold mt-2 overflow-hidden text-ellipsis text-nowrap">
-            {name}
+            {serviceDate.toString()}
           </h1>
           <p className="text-sm text-navbar overflow-hidden text-ellipsis text-nowrap">
-            {price}
+            {service}
           </p>
           <p className="text-sm text-navbar overflow-hidden text-ellipsis text-nowrap">
-            {description}
+            {hairdresser}
           </p>
           <button className="flex items-center justify-center p-3 rounded-lg bg-button_hover text-white hover:bg-gray-600 transition-all mx-4">
             Reservar
@@ -47,4 +48,4 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ name, description, price, dur
   )
 }
 
-export default ServiceCard;
+export default ReservationCard;

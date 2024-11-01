@@ -6,15 +6,13 @@ import { getServices, Service } from "@/services/services.service";
 import { useCurrentUser } from "@/hooks/auth/useCurrentUser";
 import HairdresserCard from "@/app/components/ui/HairdresserCard";
 import { Haidresser } from "@/services/hairdresser.service";
-import ReservationCard from "@/app/components/ui/ReservationCard";
-import { Reservation } from "@/services/reservation.service";
 
-export default function Reservations() {
-    const [reservations, setReservations] = useState<Reservation[]>([]);
+export default function Hairdressers() {
+    const [hairdressers, setHairdressers] = useState<Haidresser[]>([]);
     const { user:currentUser } = useCurrentUser();
 
     useEffect(() => {
-        async function loadReservations() {
+        async function loadHairdressers() {
             try {
                 
                 if (!currentUser?.token) return;
@@ -25,19 +23,16 @@ export default function Reservations() {
             }
         }
         
-        loadReservations();
+        loadHairdressers();
     }, [currentUser]);
 
     return (
         <div className="space-y-2">
-            {reservations.map(reservation => (
-                <ReservationCard
-                key={reservation.id}
-                reservationDate={reservation.reservationDate}
-                serviceDate={reservation.serviceDate}
-                status={reservation.status}
-                hairdresser={reservation.hairdresser}
-                service={reservation.service}
+            {hairdressers.map(hairdresser => (
+                <HairdresserCard
+                key={hairdresser.id}
+                name={hairdresser.name}
+                email={hairdresser.email}
                 />
             ))
             }

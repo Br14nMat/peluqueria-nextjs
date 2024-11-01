@@ -31,6 +31,7 @@ export default function Servicios() {
                 <ServiceCard
                     key={service.id}
                     name={service.name}
+                    description={service.description}
                     duration={service.duration}
                     price={service.price}
                 />

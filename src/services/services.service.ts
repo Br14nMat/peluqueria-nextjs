@@ -5,8 +5,9 @@ const BACKEND_URL = "https://peluqueria-nest-app.onrender.com"
 const BASE_URL = `${process.env.BACKEND_URL || BACKEND_URL }/service`;
 
 export interface Service {
-    id: number;
+    id: string;
     name: string;
+    description: string;
     price: number;
     duration: number;
 }
@@ -22,7 +23,7 @@ export async function getServices(token?: string): Promise<Service[]> {
     return response.data;
 }
 
-export async function fetchServiceById(id: number): Promise<Service> {
+export async function getServiceById(id: string): Promise<Service> {
     const response = await axios.get<Service>(`${BASE_URL}/${id}`);
     return response.data;
 }
@@ -32,11 +33,11 @@ export async function createService(service: Omit<Service, 'id'>): Promise<Servi
     return response.data;
 }
 
-export async function updateService(id: number, service: Partial<Omit<Service, 'id'>>): Promise<Service> {
+export async function updateService(id: string, service: Partial<Omit<Service, 'id'>>): Promise<Service> {
     const response = await axios.put<Service>(`${BASE_URL}/${id}`, service);
     return response.data;
 }
 
-export async function deleteService(id: number): Promise<void> {
+export async function deleteService(id: string): Promise<void> {
     await axios.delete(`${BASE_URL}/${id}`);
 }
