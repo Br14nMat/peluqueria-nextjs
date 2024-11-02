@@ -1,8 +1,6 @@
 import axios from 'axios';
 
-const BACKEND_URL = "https://peluqueria-nest-app.onrender.com"
-
-const BASE_URL = `${process.env.BACKEND_URL || BACKEND_URL }/service`;
+const BASE_URL = `${process.env.BACKEND_URL}/service`;
 
 export interface Service {
     id: string;
@@ -10,6 +8,7 @@ export interface Service {
     description: string;
     price: number;
     duration: number;
+    imgUrl: string;
 }
 
 export async function getServices(token?: string): Promise<Service[]> {

@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import ServiceCard from "@/app/components/ui/ServiceCard";
 import { getServices, Service } from "@/services/services.service";
 import { useCurrentUser } from "@/hooks/auth/useCurrentUser";
+import ServiceCard from "@/app/components/ui/ServiceCard";
 
 export default function Servicios() {
     const [services, setServices] = useState<Service[]>([]);
@@ -34,6 +34,7 @@ export default function Servicios() {
                     description={service.description}
                     duration={service.duration}
                     price={service.price}
+                    imgUrl={service.imgUrl}
                 />
             ))}
         </div>

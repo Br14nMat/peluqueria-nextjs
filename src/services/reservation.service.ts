@@ -1,8 +1,6 @@
 import axios from 'axios';
 
-const BACKEND_URL = "https://peluqueria-nest-app.onrender.com"
-
-const BASE_URL = `${process.env.BACKEND_URL || BACKEND_URL }/reservation`;
+const BASE_URL = `${process.env.BACKEND_URL}/reservation`;
 
 export interface Reservation {
     id: string;

@@ -1,8 +1,6 @@
 import axios from 'axios';
 
-const BACKEND_URL = "https://peluqueria-nest-app.onrender.com"
-
-const BASE_URL = `${process.env.BACKEND_URL || BACKEND_URL }/auth/hairdressers`;
+const BASE_URL = `${process.env.BACKEND_URL}/auth/hairdressers`;
 
 export interface Haidresser {
     id: string;

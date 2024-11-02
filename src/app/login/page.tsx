@@ -33,14 +33,14 @@ export default function usernamePage(){
                 
                 <Image
                     src="/logo.svg"
-                    alt="House Mafia Logo"
+                    alt="Logo"
                     width={120} 
                     height={20}
                     priority
                     className="mx-auto"
                 />
                 
-                <h1 className="text-2xl font-bold text-center mb-6 text-black">House Mafia</h1>
+                <h1 className="text-2xl font-bold text-center mb-6 text-black">Hair Vibe</h1>
 
                 <label className="block mb-2 text-gray-700">Email</label>
                 <input 
