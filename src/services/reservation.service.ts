@@ -1,4 +1,6 @@
+import { User } from '@/interface/user';
 import axios from 'axios';
+import { Service } from './services.service';
 
 const BASE_URL = `${process.env.BACKEND_URL}/reservation`;
 
@@ -12,9 +14,20 @@ export interface Reservation {
     clientId: string;
 }
 
-export async function getReservations(token?: string): Promise<Reservation[]> {
+export interface ReservationDTO {
+    id: string;
+    reservationDate: Date;
+    serviceDate: Date;
+    status: string;
+    hairdresser: User;
+    service: Service;
+    client: User
+}
+  
 
-    const response = await axios.get<Reservation[]>(BASE_URL, {
+export async function getReservations(token?: string): Promise<ReservationDTO[]> {
+
+    const response = await axios.get<ReservationDTO[]>(BASE_URL, {
         headers: {
             Authorization: token ? `Bearer ${token}` : undefined,
         },
@@ -23,8 +36,20 @@ export async function getReservations(token?: string): Promise<Reservation[]> {
     return response.data;
 }
 
-export async function getReservationById(id: string): Promise<Reservation> {
-    const response = await axios.get<Reservation>(`${BASE_URL}/${id}`);
+
+export async function getReservationsByClient(clientId : string, token?: string): Promise<ReservationDTO[]> {
+    console.log(clientId)
+    const response = await axios.get<ReservationDTO[]>(`${BASE_URL}/client/${clientId}`, {
+        headers: {
+            Authorization: token ? `Bearer ${token}` : undefined,
+        },
+    });
+    
+    return response.data;
+}
+
+export async function getReservationById(id: string): Promise<ReservationDTO> {
+    const response = await axios.get<ReservationDTO>(`${BASE_URL}/${id}`);
     return response.data;
 }
 
@@ -38,6 +63,10 @@ export async function updateReservation(id: string, service: Partial<Omit<Reserv
     return response.data;
 }
 
-export async function deleteHaidresser(id: string): Promise<void> {
-    await axios.delete(`${BASE_URL}/${id}`);
+export async function deleteReservation(id: string, token?: string): Promise<void> {
+    await axios.delete(`${BASE_URL}/${id}`, {
+        headers: {
+            Authorization: token ? `Bearer ${token}` : undefined,
+        },
+    });
 }

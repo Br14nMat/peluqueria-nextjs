@@ -30,7 +30,7 @@ export default function Hairdressers() {
         <div className="space-y-2">
             {hairdressers.map(hairdresser => (
                 <HairdresserCard
-                key={hairdresser.id}
+                key={hairdresser.user_id}
                 name={hairdresser.name}
                 email={hairdresser.email}
                 />

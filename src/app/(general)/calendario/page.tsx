@@ -9,20 +9,24 @@ import { User } from '@/interface/user';
 import { getHaidressers } from '@/services/hairdresser.service';
 import { createReservation } from '@/services/reservation.service';
 import { useCurrentUser } from '@/hooks/auth/useCurrentUser';
+import { useRouter } from 'next/navigation';
+
 
 const Calendario = () => {
+  const router = useRouter();
+
   const [servicio, setServicio] = useState<{ id: string, name: string; duration: number } | null>(null);
 
   const [reservationDate, setReservationDate] = useState<Date>();
   const [endDate, setEndDate] = useState<Date>();
 
   const [hairdressers, setHairdressers] = useState<User[]>([]);
-  const [selectedHairdresser, setSelectedHairdresser] = useState<User | null>(null);
+  const [selectedHairdresser, setSelectedHairdresser] = useState<any | null>(null);
 
   const { user:currentUser } = useCurrentUser();
 
   useEffect(() => {
-    const storedReserva = localStorage.getItem('reserva');
+    const storedReserva = localStorage.getItem('servicio');
     if (storedReserva) {
       setServicio(JSON.parse(storedReserva));
     }
@@ -62,14 +66,13 @@ const Calendario = () => {
       status: 'PENDIENTE',
       hairdresserId: selectedHairdresser?.id,
       serviceId: servicio?.id,
-      clientId: currentUser?.id
+      clientId: currentUser?.user_id
     };
-
-    console.log(reservationData)
 
     createReservation(reservationData)
         .then(reservation => {
             alert('Reservación creada con exito!')
+            router.push('/servicios')
         })
         .catch(error => {
             console.error('Error creating reservation:', error);
@@ -135,7 +138,6 @@ const Calendario = () => {
       </div>
       
 
-  
 
     </div>
   );
