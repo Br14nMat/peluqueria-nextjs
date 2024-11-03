@@ -5,10 +5,10 @@ import ServiceCard from "@/app/components/ui/ServiceCard";
 import { getServices, Service } from "@/services/services.service";
 import { useCurrentUser } from "@/hooks/auth/useCurrentUser";
 import HairdresserCard from "@/app/components/ui/HairdresserCard";
-import { Haidresser } from "@/services/hairdresser.service";
+import { User } from "@/interface/user";
 
 export default function Hairdressers() {
-    const [hairdressers, setHairdressers] = useState<Haidresser[]>([]);
+    const [hairdressers, setHairdressers] = useState<User[]>([]);
     const { user:currentUser } = useCurrentUser();
 
     useEffect(() => {

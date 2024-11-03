@@ -60,7 +60,7 @@ export default function usernamePage(){
 
                 <div className="w-full flex justify-center mt-4">
                     <button 
-                        className="w-1/2 py-2 bg-black text-white rounded hover:bg-blue-500 transition-all"
+                        className="w-1/2 py-2 bg-black text-white rounded hover:bg- transition-all"
                         onClick={onSubmit}>
                         Login
                     </button>

@@ -1,16 +1,12 @@
+import { User } from '@/interface/user';
 import axios from 'axios';
 
 const BASE_URL = `${process.env.BACKEND_URL}/auth/hairdressers`;
 
-export interface Haidresser {
-    id: string;
-    name: string;
-    email: string;
-}
 
-export async function getHaidressers(token?: string): Promise<Haidresser[]> {
+export async function getHaidressers(token?: string): Promise<User[]> {
 
-    const response = await axios.get<Haidresser[]>(BASE_URL, {
+    const response = await axios.get<User[]>(BASE_URL, {
         headers: {
             Authorization: token ? `Bearer ${token}` : undefined,
         },
@@ -19,18 +15,18 @@ export async function getHaidressers(token?: string): Promise<Haidresser[]> {
     return response.data;
 }
 
-export async function getHaidresserById(id: string): Promise<Haidresser> {
-    const response = await axios.get<Haidresser>(`${BASE_URL}/${id}`);
+export async function getHaidresserById(id: string): Promise<User> {
+    const response = await axios.get<User>(`${BASE_URL}/${id}`);
     return response.data;
 }
 
-export async function createHaidresser(service: Omit<Haidresser, 'id'>): Promise<Haidresser> {
-    const response = await axios.post<Haidresser>(BASE_URL, service);
+export async function createHaidresser(service: Omit<User, 'id'>): Promise<User> {
+    const response = await axios.post<User>(BASE_URL, service);
     return response.data;
 }
 
-export async function updateHaidresser(id: string, service: Partial<Omit<Haidresser, 'id'>>): Promise<Haidresser> {
-    const response = await axios.put<Haidresser>(`${BASE_URL}/${id}`, service);
+export async function updateHaidresser(id: string, service: Partial<Omit<User, 'id'>>): Promise<User> {
+    const response = await axios.put<User>(`${BASE_URL}/${id}`, service);
     return response.data;
 }
 

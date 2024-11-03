@@ -10,11 +10,11 @@ const config: Config = {
     extend: {
       //Paleta colores:  https://coolors.co/palette/2b2d42-8d99ae-edf2f4-ef233c-d90429
       colors: {
-        background: "#F2F2F2",
-        foreground: "#D9D9D9",
-        navbar: "#2B2D42",
-        navbar_hover: "#8D99AE",
-        button_hover: "#EF233C"
+        azulOscuro: '#2B2D42',
+        azulClaro: '#8D99AE',
+        azulPastel: '#EDF2F4',
+        rosado: '#EE233C',
+        rosadoOscuro: '#D90429',
       },
     },
   },

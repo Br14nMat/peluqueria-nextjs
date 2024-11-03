@@ -7,11 +7,12 @@ export interface Reservation {
     reservationDate: Date;
     serviceDate: Date;
     status: string;
-    hairdresser: string;
-    service: string;
+    hairdresserId: string;
+    serviceId: string;
+    clientId: string;
 }
 
-export async function getHaidressers(token?: string): Promise<Reservation[]> {
+export async function getReservations(token?: string): Promise<Reservation[]> {
 
     const response = await axios.get<Reservation[]>(BASE_URL, {
         headers: {
@@ -22,17 +23,17 @@ export async function getHaidressers(token?: string): Promise<Reservation[]> {
     return response.data;
 }
 
-export async function getHaidresserById(id: string): Promise<Reservation> {
+export async function getReservationById(id: string): Promise<Reservation> {
     const response = await axios.get<Reservation>(`${BASE_URL}/${id}`);
     return response.data;
 }
 
-export async function createHaidresser(service: Omit<Reservation, 'id'>): Promise<Reservation> {
-    const response = await axios.post<Reservation>(BASE_URL, service);
+export async function createReservation(r: Omit<Reservation, 'id'>): Promise<Reservation> {
+    const response = await axios.post<Reservation>(BASE_URL, r);
     return response.data;
 }
 
-export async function updateHaidresser(id: string, service: Partial<Omit<Reservation, 'id'>>): Promise<Reservation> {
+export async function updateReservation(id: string, service: Partial<Omit<Reservation, 'id'>>): Promise<Reservation> {
     const response = await axios.put<Reservation>(`${BASE_URL}/${id}`, service);
     return response.data;
 }

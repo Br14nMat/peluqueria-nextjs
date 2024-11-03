@@ -6,7 +6,7 @@ export default function GeneralLayout({
  children: React.ReactNode;
 }) {
   return (
-    <div className="bg-white">
+    <div className="bg-white h-screen flex flex-col">
       <Navbar></Navbar>
       {children}
     </div>

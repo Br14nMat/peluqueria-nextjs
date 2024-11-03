@@ -26,10 +26,11 @@ export default function Servicios() {
     }, [currentUser]);
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-4">
+        <div className="bg-white grid grid-cols-1 md:grid-cols-2 gap-6 p-4">
             {services.map(service => (
                 <ServiceCard
                     key={service.id}
+                    id={service.id}
                     name={service.name}
                     description={service.description}
                     duration={service.duration}
