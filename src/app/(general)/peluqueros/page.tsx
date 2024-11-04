@@ -9,7 +9,7 @@ import { User } from "@/interface/user";
 import { getHaidressers } from "@/services/hairdresser.service";
 
 export default function Hairdressers() {
-    const [hairdressers, setHairdressers] = useState<User[]>([]);
+    const [hairdressers, setHairdressers] = useState<any[]>([]);
     const { user:currentUser } = useCurrentUser();
 
     useEffect(() => {
@@ -30,10 +30,11 @@ export default function Hairdressers() {
     }, [currentUser]);
 
     return (
-        <div className="bg-white grid grid-cols-1 md:grid-cols-4 gap-6 p-7">            {hairdressers.map(hairdresser => (
+        <div className="bg-white grid grid-cols-1 md:grid-cols-4 gap-6 p-7">
+            {hairdressers.map(hairdresser => (
                 <HairdresserCard
                 key={hairdresser.email}
-                id= {hairdresser.user_id}
+                id= {hairdresser.id}
                 name={hairdresser.name}
                 email={hairdresser.email}
                 />

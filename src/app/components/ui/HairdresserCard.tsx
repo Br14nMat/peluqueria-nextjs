@@ -18,10 +18,8 @@ const HairdresserCard: React.FC<HairdresserCardProps> = ({ id, name, email }) =>
   const router = useRouter();
 
   const handleReseñar = () => {
-
     localStorage.setItem('hairdresser', JSON.stringify({ id, name, email }));
-    router.push('/reseña');
-  
+    router.push('/comentarios');
   }
 
   return (

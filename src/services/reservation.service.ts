@@ -38,7 +38,6 @@ export async function getReservations(token?: string): Promise<ReservationDTO[]>
 
 
 export async function getReservationsByClient(clientId : string, token?: string): Promise<ReservationDTO[]> {
-    console.log(clientId)
     const response = await axios.get<ReservationDTO[]>(`${BASE_URL}/client/${clientId}`, {
         headers: {
             Authorization: token ? `Bearer ${token}` : undefined,
