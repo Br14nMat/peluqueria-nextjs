@@ -26,9 +26,9 @@ const Calendario = () => {
   const { user:currentUser } = useCurrentUser();
 
   useEffect(() => {
-    const storedReserva = localStorage.getItem('servicio');
-    if (storedReserva) {
-      setServicio(JSON.parse(storedReserva));
+    const storedService = localStorage.getItem('servicio');
+    if (storedService) {
+      setServicio(JSON.parse(storedService));
     }
 
     const fetchHairdressers = async () => {

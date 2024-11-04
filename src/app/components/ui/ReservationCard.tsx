@@ -20,20 +20,22 @@ export interface ReservationCardProps {
   client: User
 }
 
-const handleDelete = async (id : string, token : string) => {
-  const confirmed = window.confirm("¿Estás seguro de cancelar la reserva?");
-  if (confirmed) {
-      deleteReservation(id, token)
-      .then(() => {
-        alert('Reserva eliminada exitosamente!')
-      })
-      .catch((e: Error) => console.error(e))
-      
-  }
-};
-
 const ReservationCard: React.FC<ReservationCardProps> = ({ id, reservationDate, serviceDate, status, hairdresser, service, client}) => {
   
+  const router = useRouter();
+
+  const handleDelete = async (id : string, token : string) => {
+    const confirmed = window.confirm("¿Estás seguro de cancelar la reserva?");
+    if (confirmed) {
+        deleteReservation(id, token)
+        .then(() => {
+          alert('Reserva eliminada exitosamente!')
+          router.refresh()
+        })
+        .catch((e: Error) => console.error(e))
+        
+    }
+  };
 
   return (
     <Card className="bg-azulPastel min-w-full">
