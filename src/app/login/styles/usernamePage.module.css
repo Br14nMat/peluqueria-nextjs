@@ -1,0 +1,7 @@
+/* styles/usernamePage.module.css */
+.background {
+    background-image: url("/media/loginImage.jpg");
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+}
