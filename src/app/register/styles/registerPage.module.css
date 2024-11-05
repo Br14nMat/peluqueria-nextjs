@@ -1,0 +1,9 @@
+/* login/styles/usernamePage.module.css */
+.background {
+    background-image: url("/media/loginImage.jpg");
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    /* Define los filtros o colores aquí si los necesitas */
+    filter: invert(0);
+}

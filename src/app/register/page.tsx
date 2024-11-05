@@ -1,32 +1,30 @@
 "use client";
 
 import { AuthService } from "@/services/auth.service";
-import { register } from "module";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import styles from "./styles/registerPage.module.css"; // Cambiar ruta si es necesario
 
-export default function usernamePage(){
+export default function RegisterPage() {
     const [email, setEmail] = useState(""); 
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
-
     const router = useRouter();
 
     const onSubmit = () => {
-        if (!email || !password)
-            alert("Incorrect email or password")
-        else{
-
+        if (!email || !password) {
+            alert("Incorrect email or password");
+        } else {
             const authService = new AuthService(process.env.BACKEND_URL);
-            const res = authService.register(name, email, password)
+            authService.register(name, email, password)
                 .then(() => router.push('/login'))
-                .catch((e) => alert("Error al registrarse" + e))
+                .catch((e) => alert("Error al registrarse: " + e));
         }
-    }
-    
+    };
+
     return (
-        <div className="flex items-center justify-center min-h-screen bg-gray-100">
+        <div className={`${styles.background} flex items-center justify-center min-h-screen`}>
             <div className="w-full max-w-sm p-8 bg-white rounded-lg shadow-lg items-center">
                 
                 <Image
@@ -73,6 +71,5 @@ export default function usernamePage(){
                 </div>
             </div>
         </div>
-
-    )
+    );
 }
