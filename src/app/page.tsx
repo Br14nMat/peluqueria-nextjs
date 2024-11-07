@@ -1,20 +1,36 @@
-// src/app/page.tsx
+"use client";
+
 import Image from "next/image";
 import { Navbar } from "./components/nav-bar/NavBar";
-import SideMenu from "./components/side-menu/SideMenu";
+import styles from "./home.module.css";
+import { useRouter } from "next/navigation";
+
 
 export default function Home() {
-  return (
-    <div className="flex">
-      {/* Renderiza el menú lateral */}
-      <SideMenu />
 
-      {/* Contenedor principal que incluye la barra de navegación */}
-      <div className="flex-1">
-        <Navbar />
-        <main className="p-6">
-          <h1>Bienvenido a la página de inicio</h1>
-        </main>
+  const router = useRouter();
+
+  const handleReservar = () => {
+    router.push("/servicios")
+  }
+
+  return (
+    <div className={styles.pageContainer}>
+      <Navbar />
+      
+      <div className={styles.backgroundContainer}>
+        <Image
+          src="/home.jpg" 
+          alt="Background"
+          layout="fill"
+          objectFit="cover"
+        />
+        <div className={styles.overlay}></div> 
+
+        <div className={styles.textContainer}>
+          <h1 className={styles.title}>Hair Vibe</h1>
+          <button onClick={handleReservar} className={styles.reserveButton}>Reservar</button>
+        </div>
       </div>
     </div>
   );
