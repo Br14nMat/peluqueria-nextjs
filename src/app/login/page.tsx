@@ -4,6 +4,8 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useLogin } from "@/hooks/auth/useLogin";
+import Link from "next/link";
+
 
 export default function usernamePage(){
     const [username, setUsername] = useState(""); 
@@ -64,7 +66,13 @@ export default function usernamePage(){
                         onClick={onSubmit}>
                         Login
                     </button>
+                    
                 </div>
+
+                <div className="w-full flex justify-center mt-4">
+                    <Link className="text-black text-sm"  href="/register">Registrarse</Link>
+                </div>
+        
             </div>
         </div>
 
