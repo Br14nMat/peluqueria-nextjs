@@ -1,6 +1,11 @@
-import { HomeIcon } from "@primer/octicons-react";
+"use client";
+
+import { HomeIcon, SignOutIcon  } from "@primer/octicons-react";
 import Link from "next/link";
 import { ActiveLink } from "../active-link/ActiveLink";
+import { useRouter } from "next/navigation";
+import { useLogout } from "@/hooks/auth/useLogout";
+
 
 const navItems = [
     {name:'Peluqueros', path: '/peluqueros'},
@@ -8,6 +13,15 @@ const navItems = [
 ]
 
 export const Navbar = () => {
+
+    const router = useRouter();
+    const {logout} = useLogout();
+
+    const handleLogout = () => {
+        logout();
+        router.push('/login')
+    }
+
     return (
       <nav className="flex bg-azulOscuro bg-opacity-80 p-4">
         <Link href="/" className="p-2 m-2 text-white">
@@ -20,9 +34,12 @@ export const Navbar = () => {
                 <ActiveLink  key={item.path} {...item}/>
             ))
         }
-        <a href="/servicios" className="bg-azulClaro flex items-center justify-center p-3 rounded-lg text-white font-bold hover:bg-azulPastel hover:text-azulOscuro transition-all mx-4">
-            Reservar
-        </a>
+        
+        <Link href={""} onClick={handleLogout} className="p-2 m-2 text-white">
+            <SignOutIcon  className="mr-2" />
+            <span>Salir</span>
+        </Link>
+
       </nav>
     );
 }
