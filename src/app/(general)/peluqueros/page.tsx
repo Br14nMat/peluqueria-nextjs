@@ -43,12 +43,21 @@ export default function Hairdressers() {
         <div className="p-7">
             <p>Prueba de renderizado de peluqueros:</p>
             
+            {/* Peluquero de prueba 1 */}
             <HairdresserCard
                 id="123"
                 name="Peluquero de Prueba"
                 email="peluquero@prueba.com"
             />
+            <br></br>
+            {/* Peluquero de prueba 2 */}
+            <HairdresserCard
+                id="456"
+                name="Peluquero Secundario"
+                email="peluquero2@prueba.com"
+            />
 
+            {/* Renderizar las tarjetas de peluqueros reales */}
             <div className="bg-white grid grid-cols-1 md:grid-cols-4 gap-6">
                 {hairdressers.map((hairdresser) => (
                     <HairdresserCard
@@ -62,4 +71,3 @@ export default function Hairdressers() {
         </div>
     );
 }
-
