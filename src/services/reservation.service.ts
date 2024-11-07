@@ -52,8 +52,12 @@ export async function getReservationById(id: string): Promise<ReservationDTO> {
     return response.data;
 }
 
-export async function createReservation(r: Omit<Reservation, 'id'>): Promise<Reservation> {
-    const response = await axios.post<Reservation>(BASE_URL, r);
+export async function createReservation(r: Omit<Reservation, 'id'>, token?: string): Promise<Reservation> {
+    const response = await axios.post<Reservation>(BASE_URL, r, {
+        headers: {
+            Authorization: token ? `Bearer ${token}` : undefined,
+        },
+    });
     return response.data;
 }
 

@@ -69,7 +69,7 @@ const Calendario = () => {
       clientId: currentUser?.user_id
     };
 
-    createReservation(reservationData)
+    createReservation(reservationData, currentUser?.token)
         .then(reservation => {
             alert('Reservación creada con exito!')
             router.push('/servicios')
