@@ -2,6 +2,12 @@ import { NextRequest, NextResponse } from "next/server";
 
 
 export default function middleware(request: NextRequest){
+
+    if(!request.cookies.get("currentUser")?.value && request.nextUrl.pathname !== '/login' && request.nextUrl.pathname !== '/register')
+        return NextResponse.redirect(new URL("/login", request.url));
+
+    if(!request.cookies.get("currentUser"))
+        return
     
     const currentUser = JSON.parse(request.cookies.get("currentUser")?.value || '');
     const token = currentUser?.token
@@ -29,7 +35,6 @@ export default function middleware(request: NextRequest){
     ){
         return Redirect();
     }
-
 
 }
 
