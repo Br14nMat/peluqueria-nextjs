@@ -3,6 +3,8 @@ import { NextRequest, NextResponse } from "next/server";
 
 export default function middleware(request: NextRequest){
 
+    console.log(request.cookies.get("currentUser"))
+
     if(!request.cookies.get("currentUser")?.value && request.nextUrl.pathname !== '/login' && request.nextUrl.pathname !== '/register')
         return NextResponse.redirect(new URL("/login", request.url));
 
