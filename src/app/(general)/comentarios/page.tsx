@@ -49,7 +49,7 @@ export default function Comentarios() {
         }
 
 
-        createFeedback(feedbackData)
+        createFeedback(feedbackData, currentUser?.token)
             .then(() => {
                 alert('Comentario creado exitosamente')
                 router.push('/comentarios')

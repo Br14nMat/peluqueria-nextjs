@@ -47,10 +47,15 @@ export async function getFeedbackById(id: string): Promise<Feedback> {
     return response.data;
 }
 
-export async function createFeedback(r: Omit<FeedbackDTO, 'id'>): Promise<FeedbackDTO> {
-    const response = await axios.post<FeedbackDTO>(BASE_URL, r);
+export async function createFeedback(r: Omit<FeedbackDTO, 'id'>, token?: string): Promise<FeedbackDTO> {
+    const response = await axios.post<FeedbackDTO>(BASE_URL, r, {
+        headers: {
+            Authorization: token ? `Bearer ${token}` : undefined,
+        },
+    });
     return response.data;
 }
+
 
 export async function updateFeedback(id: string, service: Partial<Omit<Feedback, 'id'>>): Promise<Feedback> {
     const response = await axios.put<Feedback>(`${BASE_URL}/${id}`, service);
