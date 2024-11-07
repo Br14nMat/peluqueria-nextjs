@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 
 export default function middleware(request: NextRequest){
-    /*
+    
     const currentUser = JSON.parse(request.cookies.get("currentUser")?.value || '');
     const token = currentUser?.token
     const role = currentUser?.role
@@ -30,7 +30,6 @@ export default function middleware(request: NextRequest){
         return Redirect();
     }
 
-    */
 
 }
 
