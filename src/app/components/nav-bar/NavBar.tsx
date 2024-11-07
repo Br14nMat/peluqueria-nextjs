@@ -18,8 +18,8 @@ export const Navbar = () => {
     const {logout} = useLogout();
 
     const handleLogout = () => {
-        logout();
         router.push('/login')
+        logout();
     }
 
     return (

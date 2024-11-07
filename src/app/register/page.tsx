@@ -27,15 +27,6 @@ export default function RegisterPage() {
         <div className={`${styles.background} flex items-center justify-center min-h-screen`}>
             <div className="w-full max-w-sm p-8 bg-white rounded-lg shadow-lg items-center">
                 
-                <Image
-                    src="/logo.svg"
-                    alt="Logo"
-                    width={120} 
-                    height={20}
-                    priority
-                    className="mx-auto"
-                />
-                
                 <h1 className="text-2xl font-bold text-center mb-6 text-black">Hair Vibe</h1>
 
                 <input 
