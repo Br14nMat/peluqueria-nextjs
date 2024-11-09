@@ -21,55 +21,91 @@ export interface ReservationDTO {
     status: string;
     hairdresser: User;
     service: Service;
-    client: User
+    client: User;
 }
-  
 
 export async function getReservations(token?: string): Promise<ReservationDTO[]> {
-
-    const response = await axios.get<ReservationDTO[]>(BASE_URL, {
-        headers: {
-            Authorization: token ? `Bearer ${token}` : undefined,
-        },
-    });
-    
-    return response.data;
+    try {
+        const response = await axios.get<ReservationDTO[]>(BASE_URL, {
+            headers: {
+                Authorization: token ? `Bearer ${token}` : undefined,
+            },
+        });
+        return response.data;
+    } catch (error) {
+        console.error("Error al obtener las reservas:", error);
+        throw error;
+    }
 }
 
-
-export async function getReservationsByClient(clientId : string, token?: string): Promise<ReservationDTO[]> {
-    const response = await axios.get<ReservationDTO[]>(`${BASE_URL}/client/${clientId}`, {
-        headers: {
-            Authorization: token ? `Bearer ${token}` : undefined,
-        },
-    });
-    
-    return response.data;
+export async function getReservationsByClient(clientId: string, token?: string): Promise<ReservationDTO[]> {
+    try {
+        const response = await axios.get<ReservationDTO[]>(`${BASE_URL}/client/${clientId}`, {
+            headers: {
+                Authorization: token ? `Bearer ${token}` : undefined,
+            },
+        });
+        return response.data;
+    } catch (error) {
+        console.error("Error al obtener las reservas por cliente:", error);
+        throw error;
+    }
 }
 
 export async function getReservationById(id: string): Promise<ReservationDTO> {
-    const response = await axios.get<ReservationDTO>(`${BASE_URL}/${id}`);
-    return response.data;
+    try {
+        const response = await axios.get<ReservationDTO>(`${BASE_URL}/${id}`);
+        return response.data;
+    } catch (error) {
+        console.error("Error al obtener la reserva por ID:", error);
+        throw error;
+    }
 }
 
-export async function createReservation(r: Omit<Reservation, 'id'>, token?: string): Promise<Reservation> {
-    const response = await axios.post<Reservation>(BASE_URL, r, {
-        headers: {
-            Authorization: token ? `Bearer ${token}` : undefined,
-        },
-    });
-    return response.data;
+export async function createReservation(r: Omit<Reservation, 'id'>): Promise<Reservation> {
+    try {
+        const response = await axios.post<Reservation>(BASE_URL, r);
+        return response.data;
+    } catch (error) {
+        console.error("Error al crear la reserva:", error);
+        throw error;
+    }
 }
 
 export async function updateReservation(id: string, service: Partial<Omit<Reservation, 'id'>>): Promise<Reservation> {
-    const response = await axios.put<Reservation>(`${BASE_URL}/${id}`, service);
-    return response.data;
+    try {
+        const response = await axios.put<Reservation>(`${BASE_URL}/${id}`, service);
+        return response.data;
+    } catch (error) {
+        console.error("Error al actualizar la reserva:", error);
+        throw error;
+    }
 }
 
 export async function deleteReservation(id: string, token?: string): Promise<void> {
-    await axios.delete(`${BASE_URL}/${id}`, {
-        headers: {
-            Authorization: token ? `Bearer ${token}` : undefined,
-        },
-    });
+    try {
+        await axios.delete(`${BASE_URL}/${id}`, {
+            headers: {
+                Authorization: token ? `Bearer ${token}` : undefined,
+            },
+        });
+    } catch (error) {
+        console.error("Error al eliminar la reserva:", error);
+        throw error;
+    }
 }
+
+export async function getReservationsByHairdresser(hairdresserId: string, token?: string): Promise<ReservationDTO[]> {
+    try {
+        const response = await axios.get<ReservationDTO[]>(`${BASE_URL}/hairdresser/${hairdresserId}`, {
+            headers: {
+                Authorization: token ? `Bearer ${token}` : undefined,
+            },
+        });
+        return response.data;
+    } catch (error) {
+        console.error("Error al obtener las reservas por peluquero:", error);
+        throw error;
+    }
+}
+
