@@ -1,3 +1,4 @@
+import { Providers } from "@/store/Providers";
 import { Navbar } from "../components/nav-bar/NavBar";
 
 export default function GeneralLayout({
@@ -8,7 +9,9 @@ export default function GeneralLayout({
   return (
     <div className="bg-white h-screen flex flex-col">
       <Navbar></Navbar>
-      {children}
+      <Providers>
+        {children}
+      </Providers> 
     </div>
   );
 }

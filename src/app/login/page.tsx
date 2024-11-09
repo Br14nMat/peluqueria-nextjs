@@ -23,7 +23,7 @@ export default function usernamePage(){
                     console.error(e)
                     setUsername("");
                     setPassword("");                    
-                    alert("Invalid Credentials")})
+                    alert("Login error")})
 
         }
     }

@@ -72,7 +72,7 @@ const Calendario = () => {
     createReservation(reservationData, currentUser?.token)
         .then(reservation => {
             alert('Reservación creada con exito!')
-            router.push('/servicios')
+            router.push('/reservas')
         })
         .catch(error => {
             console.error('Error creating reservation:', error);

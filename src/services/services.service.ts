@@ -27,8 +27,12 @@ export async function getServiceById(id: string): Promise<Service> {
     return response.data;
 }
 
-export async function createService(service: Omit<Service, 'id'>): Promise<Service> {
-    const response = await axios.post<Service>(BASE_URL, service);
+export async function createService(service: Omit<Service, 'id'>, token?: string): Promise<Service> {
+    const response = await axios.post<Service>(BASE_URL, service, {
+        headers: {
+            Authorization: token ? `Bearer ${token}` : undefined,
+        },
+    });
     return response.data;
 }
 

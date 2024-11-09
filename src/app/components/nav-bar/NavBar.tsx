@@ -12,7 +12,7 @@ const navItems = [
     {name:'Reservas', path: '/reservas'},
 ]
 
-export const Navbar = () => {
+export const Navbar = ({}) => {
 
     const router = useRouter();
     const {logout} = useLogout();

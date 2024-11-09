@@ -4,19 +4,24 @@ import React, { useEffect, useState } from "react";
 import { getServices, Service } from "@/services/services.service";
 import { useCurrentUser } from "@/hooks/auth/useCurrentUser";
 import ServiceCard from "@/app/components/ui/ServiceCard";
+import { useAppDispatch, useAppSelector } from "@/store";
+import { fetchServices } from "@/store/service/serviceSlice";
+
 
 export default function Servicios() {
-    const [services, setServices] = useState<Service[]>([]);
+
     const { user:currentUser } = useCurrentUser();
+    const dispatch = useAppDispatch();
+
+    const services = useAppSelector((state) => state.services.list);
 
     useEffect(() => {
         async function loadServices() {
             try {
                 
                 if (!currentUser?.token) return;
-
-                const data = await getServices(currentUser?.token);
-                setServices(data);
+                dispatch(fetchServices({ token: currentUser.token }));
+                
             } catch (error) {
                 console.error("Error al obtener los servicios:", error);
             }
