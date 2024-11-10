@@ -3,12 +3,14 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import reservationsReducer from './reservation/reservationSlice';
 import feedbacksReducer from './feedback/feedbackSlice';
 import servicesReducer from './service/serviceSlice'
+import usersReduce from './user/userSlice'
 
 export const store = configureStore({
     reducer: {
         reservations: reservationsReducer,
         feedbacks: feedbacksReducer,
-        services: servicesReducer
+        services: servicesReducer,
+        users: usersReduce
     }
 })
 

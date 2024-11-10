@@ -2,14 +2,15 @@
 
 import { HomeIcon, SignOutIcon  } from "@primer/octicons-react";
 import Link from "next/link";
-import { ActiveLink } from "../active-link/ActiveLink";
 import { useRouter } from "next/navigation";
 import { useLogout } from "@/hooks/auth/useLogout";
+import { ActiveLink } from "@/app/components/active-link/ActiveLink";
 
 
 const navItems = [
-    {name:'Peluqueros', path: '/peluqueros'},
-    {name:'Reservas', path: '/reservas'},
+    {name:'Servicios', path: 'admin/servicios'},
+    {name:'Peluqueros', path: 'admin/peluqueros'},
+    {name:'Clientes', path: 'admin/clientes'},
 ]
 
 export const Navbar = () => {

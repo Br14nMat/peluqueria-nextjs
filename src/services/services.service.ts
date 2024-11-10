@@ -36,11 +36,21 @@ export async function createService(service: Omit<Service, 'id'>, token?: string
     return response.data;
 }
 
-export async function updateService(id: string, service: Partial<Omit<Service, 'id'>>): Promise<Service> {
-    const response = await axios.put<Service>(`${BASE_URL}/${id}`, service);
+export async function updateService(id: string, service: Partial<Omit<Service, 'id'>>, token?: string): Promise<Service> {
+    const response = await axios.put<Service>(`${BASE_URL}/${id}`, service, {
+        headers: {
+            Authorization: token ? `Bearer ${token}` : undefined,
+        },
+    });
     return response.data;
 }
 
-export async function deleteService(id: string): Promise<void> {
-    await axios.delete(`${BASE_URL}/${id}`);
+
+export async function deleteService(id: string, token?: string): Promise<Service> {
+    const response = await axios.delete(`${BASE_URL}/${id}`, {
+        headers: {
+            Authorization: token ? `Bearer ${token}` : undefined,
+        },
+    });
+    return response.data;
 }
