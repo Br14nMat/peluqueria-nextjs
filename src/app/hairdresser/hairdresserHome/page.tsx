@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { NavbarH } from "@/app/components/nav-bar/NavBar";
+import { Navbar } from "@/app/hairdresser/components/nav-bar/NavBarH";
 import styles from "./hairdresserHome.module.css";
 import { useRouter } from "next/navigation";
 
