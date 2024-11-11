@@ -11,26 +11,26 @@ import { removeReservation } from "@/store/reservation/reservationSlice";
 import { useAppDispatch } from "@/store";
 
 export interface ReservationCardProps {
-  id: string;
-  reservationDate: Date;
-  serviceDate: Date;
-  status: string;
-  hairdresser: User;
-  service: Service;
-  client: User;
-  onDelete: () => void; 
+  reservation: {
+    id: string;
+    reservationDate: Date;
+    serviceDate: Date;
+    status: string;
+    hairdresser: User;
+    service: Service;
+    client: User;
+  };
+  onDelete: () => void;
+  onComplete?: () => void;
 }
 
 const ReservationCard: React.FC<ReservationCardProps> = ({
-  id,
-  reservationDate,
-  serviceDate,
-  status,
-  hairdresser,
-  service,
-  client,
-  onDelete,  
+  reservation,
+  onDelete,
+  onComplete,
 }) => {
+  const { id, reservationDate, serviceDate, status, hairdresser, service, client } = reservation;
+  
   return (
       <Card className="bg-azulPastel min-w-full">
           <CardContent className="py-0 flex px-0">

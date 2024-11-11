@@ -73,3 +73,34 @@ export async function deleteReservation(id: string, token?: string): Promise<voi
         },
     });
 }
+
+// Obtener reservas por peluquero
+export async function getHairdresserReservations(hairdresserId: string, token?: string): Promise<ReservationDTO[]> {
+    const response = await axios.get<ReservationDTO[]>(`${BASE_URL}/hairdresser/${hairdresserId}`, {
+        headers: {
+            Authorization: token ? `Bearer ${token}` : undefined,
+        },
+    });
+    return response.data;
+}
+
+// Marcar reserva como completada
+export async function markReservationAsCompleted(id: string, token?: string): Promise<Reservation> {
+    const response = await axios.patch<Reservation>(`${BASE_URL}/${id}/complete`, {}, {
+        headers: {
+            Authorization: token ? `Bearer ${token}` : undefined,
+        },
+    });
+    return response.data;
+}
+
+// Obtener reservas por estado
+export async function getReservationsByStatus(status: string, token?: string): Promise<ReservationDTO[]> {
+    const response = await axios.get<ReservationDTO[]>(`${BASE_URL}/status/${status}`, {
+        headers: {
+            Authorization: token ? `Bearer ${token}` : undefined,
+        },
+    });
+    return response.data;
+}
+

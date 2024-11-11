@@ -1,0 +1,74 @@
+.pageContainer {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+  }
+  
+  .backgroundContainer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+  }
+  
+  .textContainer {
+    position: absolute;
+    top: 35%;
+    left: 35%;
+    transform: translate(-35%, -35%);
+    color: white;
+    text-align: center;
+    z-index: 10;
+    width: 100%;
+  }
+  
+  .title {
+    font-size: 4rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.6);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 90%;
+    margin: 0 auto;
+  }
+  
+  .reserveButton {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    background-color: #D90429;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    z-index: 10;
+    position: relative;
+  }
+  
+  .reserveButton:hover {
+    background-color: #EE233C;
+  }
+  
+  .Navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+  }
+  
