@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Proyecto "Peluquería Hair Vibe"
 
-## Getting Started
+## Descripción del Proyecto
 
-First, run the development server:
+**Hair Vibe** es una aplicación desarrollada en **Next.js** para la gestión de reservas de servicios en una peluquería. Los usuarios pueden navegar por los servicios, reservar citas y calificar el servicio recibido. La aplicación cuenta con tres tipos de usuarios: **clientes**, **peluqueros** y **administradores**, cada uno con funcionalidades específicas adaptadas a sus necesidades dentro del sistema.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Instrucciones para Ejecutar la Aplicación
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Sigue los pasos a continuación para ejecutar la aplicación localmente.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Clonar el Repositorio
 
-## Learn More
+1. Clona el repositorio desde GitHub para obtener el código fuente:
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   git clone https://github.com/Br14nMat/peluqueria-nextjs.git
+   cd peluqueria-nextjs
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Instalar Dependencias
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. Instala las dependencias del proyecto usando npm. Asegúrate de utilizar la opción `--legacy-peer-deps`:
 
-## Deploy on Vercel
+    ```bash
+    npm install --legacy-peer-deps
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Configurar Variables de Entorno
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+3. Configura la URL del backend en el archivo `next.config.ts` usando la variable de entorno `BACKEND_URL`:
+
+    ```typescript
+    module.exports = {
+    env: {
+        BACKEND_URL: "<URL_de_tu_Backend>"
+    }
+    }
+
+## Iniciar la Aplicación
+
+4. Una vez completados los pasos anteriores, inicia la aplicación en modo de desarrollo con el siguiente comando:
+
+    ```bash
+    npm run dev
+
+La aplicación estará disponible en http://localhost:3000
+
