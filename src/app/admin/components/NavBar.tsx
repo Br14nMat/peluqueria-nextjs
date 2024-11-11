@@ -9,8 +9,6 @@ import { ActiveLink } from "@/app/components/active-link/ActiveLink";
 
 const navItems = [
     {name:'Servicios', path: 'admin/servicios'},
-    {name:'Peluqueros', path: 'admin/peluqueros'},
-    {name:'Clientes', path: 'admin/clientes'},
 ]
 
 export const Navbar = () => {
@@ -32,7 +30,7 @@ export const Navbar = () => {
         <div className="flex flex-1"></div>
         {
             navItems.map(item => (
-                <ActiveLink  key={item.path} {...item}/>
+                <ActiveLink key={item.path} {...item}/>
             ))
         }
         

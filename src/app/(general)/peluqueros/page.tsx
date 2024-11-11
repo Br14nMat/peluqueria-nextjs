@@ -7,12 +7,17 @@ import { useCurrentUser } from "@/hooks/auth/useCurrentUser";
 import HairdresserCard from "@/app/components/ui/HairdresserCard";
 import { User } from "@/interface/user";
 import { useAppDispatch, useAppSelector } from "@/store";
-import { getHaidressers } from "@/store/user/userSlice";
+import { fetchAllUsers, getHaidressers } from "@/store/user/userSlice";
 
 
 export default function Hairdressers() {
+
     const hairdressers = useAppSelector(getHaidressers);
-    const { user:currentUser } = useCurrentUser();
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        dispatch(fetchAllUsers());
+    }, []);
 
     return (
         <div className="bg-white grid grid-cols-1 md:grid-cols-4 gap-6 p-7">

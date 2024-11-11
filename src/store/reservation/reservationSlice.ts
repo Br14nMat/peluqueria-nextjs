@@ -35,7 +35,6 @@ export const fetchReservationsByClient = createAsyncThunk<
 );
 
 
-
 export const removeReservation = createAsyncThunk<string, { id: string; token?: string }>(
   'reservations/removeReservation',
   async ({ id, token }) => {

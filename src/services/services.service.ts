@@ -37,7 +37,7 @@ export async function createService(service: Omit<Service, 'id'>, token?: string
 }
 
 export async function updateService(id: string, service: Partial<Omit<Service, 'id'>>, token?: string): Promise<Service> {
-    const response = await axios.put<Service>(`${BASE_URL}/${id}`, service, {
+    const response = await axios.patch<Service>(`${BASE_URL}/${id}`, service, {
         headers: {
             Authorization: token ? `Bearer ${token}` : undefined,
         },

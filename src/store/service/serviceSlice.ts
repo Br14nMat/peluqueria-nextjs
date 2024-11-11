@@ -53,7 +53,8 @@ export const updateServiceAsync = createAsyncThunk<
 export const removeService = createAsyncThunk<string, { id: string; token?: string }>(
   'service/removeService',
   async ({ id, token }) => {
-    await deleteService(id, token);
+    const data = await deleteService(id, token);
+    console.log(data)
     return id;
   }
 );
@@ -77,7 +78,7 @@ const servicesSlice = createSlice({
         state.list.push(action.payload);
       })
       .addCase(removeService.fulfilled, (state, action: PayloadAction<string>) => {
-        state.list = state.list.filter(service => service.id !== action.payload);
+        state.list = state.list.filter((service) => service.id !== action.payload);
       })
       .addCase(updateServiceAsync.fulfilled, (state, action: PayloadAction<Service>) => {
         const index = state.list.findIndex(service => service.id === action.payload.id);

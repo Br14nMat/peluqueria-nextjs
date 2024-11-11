@@ -1,12 +1,13 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 import { useLogin } from "@/hooks/auth/useLogin";
 import Link from "next/link";
 import { useAppDispatch, useAppSelector } from "@/store";
 import { fetchAllUsers } from "@/store/user/userSlice";
 import { useCurrentUser } from "@/hooks/auth/useCurrentUser";
+import React, { useEffect, useState } from "react";
+import { useLogout } from "@/hooks/auth/useLogout";
 
 
 export default function usernamePage(){
@@ -16,7 +17,13 @@ export default function usernamePage(){
     const dispatch = useAppDispatch();
     const router = useRouter();
     const { login } = useLogin();
+    const { logout } = useLogout();
     const { user:currentUser } = useCurrentUser();
+
+
+    useEffect(() => {
+        logout();
+    }, []);
 
     const onSubmit = () => {
         if (!username || !password)
@@ -24,7 +31,6 @@ export default function usernamePage(){
         else{
             let res = login(username, password)
                 .then(() => {
-                    dispatch(fetchAllUsers({token: currentUser?.token}))
                     router.push("/")
                 }
                 )
