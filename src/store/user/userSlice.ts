@@ -25,7 +25,6 @@ export const fetchAllUsers = createAsyncThunk<IUser[]>(
   'users/fetchAllUsers',
   async () => {
     const users = await getAllUsers();
-    console.log(users);
     return users;
   }
 );

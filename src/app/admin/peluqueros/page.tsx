@@ -79,7 +79,7 @@ const HairdressersTable = () => {
         <button
           disabled={currentPage === 1}
           onClick={() => setCurrentPage(currentPage - 1)}
-          className="bg-rosadoOscuro text-white p-2 rounded"
+          className="bg-azulOscuro text-white p-2 rounded"
         >
           Anterior
         </button>
@@ -87,7 +87,7 @@ const HairdressersTable = () => {
         <button
           disabled={currentPage === totalPages}
           onClick={() => setCurrentPage(currentPage + 1)}
-          className="bg-rosadoOscuro text-white p-2 rounded"
+          className="bg-azulOscuro text-white p-2 rounded"
         >
           Siguiente
         </button>

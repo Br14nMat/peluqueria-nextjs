@@ -1,5 +1,6 @@
 "use client";
 
+import { useCurrentUser } from "@/hooks/auth/useCurrentUser";
 import { AuthService } from "@/services/auth.service";
 import { registerByAdmin } from "@/services/user.service";
 import { register } from "module";
@@ -13,6 +14,7 @@ export default function RegisterAdmin(){
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
     const [role, setRole] = useState("");   
+    const { user:currentUser } = useCurrentUser();
 
 
     const router = useRouter();
@@ -21,8 +23,11 @@ export default function RegisterAdmin(){
         if (!email || !password)
             alert("Incorrect email or password")
         else{
-            const res = registerByAdmin(name, email, password, [role])
-                .then(() => router.push('/'))
+            const res = registerByAdmin(name, email, password, [role], currentUser?.token)
+                .then(() =>{
+                    alert(role + " creado exitosamente!")
+                    router.push('/')
+                })
                 .catch((e) => alert("Error al registrar usuario" + e))
         }
     }
@@ -76,14 +81,14 @@ export default function RegisterAdmin(){
                         </label>
                         <input
                         type="radio"
-                        id="stylist"
+                        id="hairdresser"
                         name="role"
-                        value="stylist"
-                        checked={role === "stylist"} // Set checked state based on role
+                        value="hairdresser"
+                        checked={role === "hairdresser"} 
                         onChange={(e) => setRole(e.target.value)}
                         className="w-4 h-4 border-gray-300 rounded focus:ring-2 focus:ring-blue-500"
                         />
-                        <label htmlFor="stylist" className="text-gray-700">
+                        <label htmlFor="hairdresser" className="text-gray-700">
                         Peluquero
                         </label>
                     </div>

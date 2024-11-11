@@ -10,9 +10,9 @@ export interface IUser {
     roles: string[];
 }
 
-export async function registerByAdmin(name: string, email: string, password: string, roles: string [], token?: string): Promise<IUser[]> {
+export async function registerByAdmin(name: string, email: string, password: string, roles: string [], token?: string): Promise<IUser> {
 
-    const response = await axios.post(`${BASE_URL}/admin/register`, {name, email, password, roles},
+    const response = await axios.post<IUser>(`${BASE_URL}/admin/register`, {name, email, password, roles},
         {
         headers: {
             Authorization: token ? `Bearer ${token}` : undefined,

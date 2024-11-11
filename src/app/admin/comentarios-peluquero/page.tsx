@@ -49,19 +49,23 @@ export default function Comentarios() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-4">
                 <h1 className="text-azulOscuro md:col-span-2">Comentarios</h1>
                 <div className="max-h-96 overflow-y-auto space-y-2 md:col-span-2">
-                    {feedbacks.map((feedback, index) => (
-                        <div key={index} className="bg-gray-100 p-4 rounded-md shadow">
-                            <div className="flex items-center space-x-1 text-rosadoOscuro">
-                                {feedback.rating} <span>★</span>
+                    {feedbacks.length === 0 ? (
+                        <p className="text-center text-gray-500">No hay comentarios disponibles.</p>
+                    ) : (
+                        feedbacks.map((feedback, index) => (
+                            <div key={index} className="bg-gray-100 p-4 rounded-md shadow">
+                                <div className="flex items-center space-x-1 text-rosadoOscuro">
+                                    {feedback.rating} <span>★</span>
+                                </div>
+                                <p className="text-black mt-1">
+                                    {feedback.client.name}:
+                                </p>
+                                <p className="text-gray-600 mt-1">
+                                    {feedback.comment}
+                                </p>
                             </div>
-                            <p className="text-black mt-1">
-                                {feedback.client.name}:
-                            </p>
-                            <p className="text-gray-600 mt-1">
-                                {feedback.comment}
-                            </p>
-                        </div>
-                    ))}
+                        ))
+                    )}
                 </div>
             </div>
         </div>
