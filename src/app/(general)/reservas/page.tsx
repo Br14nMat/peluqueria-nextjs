@@ -37,8 +37,10 @@ export default function Reservations() {
             {reservations.map((reservation) => (
                 <ReservationCard
                     key={reservation.id}
-                    {...reservation}
+                    reservation={reservation}
                     onDelete={() => handleDelete(reservation.id)}
+                    onComplete={() => {}}
+                    showCompleteButton={false}
                 />
             ))}
         </div>

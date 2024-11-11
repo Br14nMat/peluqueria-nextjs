@@ -20,20 +20,22 @@ export interface ReservationCardProps {
     service: Service;
     client: User;
   };
+  onComplete: () => void;
+  showCompleteButton: boolean;
   onDelete: () => void;
-  onComplete?: () => void;
 }
 
 const ReservationCard: React.FC<ReservationCardProps> = ({
   reservation,
-  onDelete,
   onComplete,
+  showCompleteButton,
+  onDelete,
 }) => {
   const { id, reservationDate, serviceDate, status, hairdresser, service, client } = reservation;
   
   return (
       <Card className="bg-azulPastel min-w-full">
-          <CardContent className="py-0 flex px-0">
+          <CardContent className="py-0 flex px-0 relative">
               <div className="flex flex-col gap-2 py-5 md:py-3 flex-[3] pl-5 md:pl-3">
                   <Badge className="bg-azulOscuro w-fit">
                       {status}
@@ -41,9 +43,14 @@ const ReservationCard: React.FC<ReservationCardProps> = ({
 
                   <h2 className="text-azulOscuro mx-2 font-bold md:text-base">{service.name}</h2>
                   <p className="text-azulOscuro mx-3">{hairdresser.name}</p>
-              </div>
-              <div onClick={onDelete} className="cursor-pointer">
-                  <TrashIcon className="bg-red-600 m-2"></TrashIcon>
+                  {showCompleteButton && (
+                      <button
+                          onClick={onComplete}
+                          className="bg-green-500 text-white py-1 px-3 rounded hover:bg-green-600 transition-colors w-fit mx-2"
+                      >
+                          Finalizar
+                      </button>
+                  )}
               </div>
               <div className="bg-azulOscuro rounded-lg flex flex-col items-center justify-center flex-1 border-l border-solid border-secondary">
                   <p className="text-sm capitalize">

@@ -6,7 +6,7 @@ import ReservationCard from "@/app/components/ui/ReservationCard";
 import { getHairdresserReservations, markReservationAsCompleted } from "@/services/reservation.service";
 import { Service } from "@/services/services.service";
 import { User } from "@/interface/user";
-
+import { Navbar } from "@/app/hairdresser/components/nav-bar/NavBar";
 
 interface Reservation {
     id: string;
@@ -51,7 +51,6 @@ export default function HairdresserReservations() {
             if (!currentUser?.token) return;
 
             await markReservationAsCompleted(reservationId, currentUser.token);
-            // Filtrar la reserva completada de la lista
             setReservations((prevReservations) =>
                 prevReservations.filter((reservation) => reservation.id !== reservationId)
             );
@@ -60,20 +59,33 @@ export default function HairdresserReservations() {
         }
     };
 
+    const handleDeleteReservation = (reservationId: string) => {
+        setReservations((prevReservations) =>
+            prevReservations.filter((reservation) => reservation.id !== reservationId)
+        );
+    };
+
     return (
-        <div className="bg-white grid grid-cols-1 md:grid-cols-3 gap-6 p-7">
-            <h2 className="text-2xl font-bold mb-6">Mis Reservas</h2>
-            {reservations.map((reservation) => (
-                <ReservationCard
-                    key={reservation.id}
-                    reservation={reservation}
-                    onComplete={() => handleCompleteReservation(reservation.id)}
-                    onDelete={() => {}}
-                />
-            ))}
-            {reservations.length === 0 && (
-                <p className="text-center text-gray-500 col-span-full">No tienes reservas pendientes</p>
-            )}
+        <div className="min-h-screen bg-white">
+            <Navbar />
+            <div className="p-7">
+                <h2 className="text-2xl font-bold mb-6 text-black">Mis Reservas</h2>
+                {reservations.length > 0 ? (
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        {reservations.map((reservation) => (
+                            <ReservationCard
+                                key={reservation.id}
+                                reservation={reservation}
+                                onComplete={() => handleCompleteReservation(reservation.id)}
+                                onDelete={() => handleDeleteReservation(reservation.id)}
+                                showCompleteButton={true}
+                            />
+                        ))}
+                    </div>
+                ) : (
+                    <p className="text-center text-black text-lg">No tienes reservas pendientes</p>
+                )}
+            </div>
         </div>
     );
 }
