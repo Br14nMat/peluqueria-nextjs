@@ -16,7 +16,7 @@ export default function middleware(request: NextRequest){
     const { pathname }: { pathname: string } = request.nextUrl;
 
     const Redirect = () => {
-        if(role == "client") return NextResponse.redirect(new URL("/hairdresser", request.url))
+        if(role == "client") return NextResponse.redirect(new URL("/", request.url))
         else if (role == "hairdresser") return NextResponse.redirect(new URL("/hairdresser", request.url))
         else if (role == "admin") return NextResponse.redirect(new URL("/admin", request.url))
         else return NextResponse.redirect(new URL("/not-found", request.url))
