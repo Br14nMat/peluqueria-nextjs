@@ -1,48 +1,48 @@
 "use client";
 
-import React, { useEffect } from "react";
-import ReservationCard, { ReservationCardProps } from "@/app/components/ui/ReservationCard";
+import React, { useEffect, useState } from "react";
+import ServiceCard from "@/app/components/ui/ServiceCard";
+import { getServices, Service } from "@/services/services.service";
 import { useCurrentUser } from "@/hooks/auth/useCurrentUser";
-import { useAppDispatch, useAppSelector } from "@/store";
-import { fetchReservationsByClient, removeReservation } from "@/store/reservation/reservationSlice";
+import HairdresserCard from "@/app/components/ui/HairdresserCard";
+import ReservationCard, { ReservationCardProps } from "@/app/components/ui/ReservationCard";
+import { getReservations, getReservationsByClient, Reservation } from "@/services/reservation.service";
 
 export default function Reservations() {
-    const dispatch = useAppDispatch();
-
-    const reservations = useAppSelector((state) => state.reservations.list);
-    
-    const { user: currentUser } = useCurrentUser();
+    const [reservations, setReservations] = useState<ReservationCardProps[]>([]);
+    const { user:currentUser } = useCurrentUser();
 
     useEffect(() => {
-        if (currentUser?.token) {
-            dispatch(fetchReservationsByClient({ clientId: currentUser.user_id, token: currentUser.token }));
-        }
-
-    }, [currentUser, dispatch]);
-
-    const handleDelete = async (id: string) => {
-        const confirmed = window.confirm("¿Estás seguro de cancelar la reserva?");
-        if (confirmed && currentUser?.token) {
+        async function loadReservations() {
             try {
-                await dispatch(removeReservation({ id, token: currentUser.token })).unwrap();
-                alert("Reserva eliminada exitosamente!");
+                
+                if (!currentUser?.token) return;
+                const data = await getReservationsByClient(currentUser.user_id, currentUser?.token);
+                setReservations(data)
             } catch (error) {
-                console.error("Error al eliminar la reserva:", error);
+                console.error("Error al obtener las reservas", error);
             }
         }
-    };
+        
+        loadReservations();
+    }, [currentUser]);
 
     return (
         <div className="p-5 m-5 grid grid-cols-1 md:grid-cols-2 gap-6">
-            {reservations.map((reservation) => (
+            {reservations.map(reservation => (
                 <ReservationCard
-                    key={reservation.id}
-                    reservation={reservation}
-                    onDelete={() => handleDelete(reservation.id)}
-                    onComplete={() => {}}
-                    showCompleteButton={false}
+                key={reservation.id}
+                id={reservation.id}
+                reservationDate={reservation.reservationDate}
+                serviceDate={reservation.serviceDate}
+                status={reservation.status}
+                hairdresser={reservation.hairdresser}
+                service={reservation.service}
+                client={reservation.client}
                 />
-            ))}
+            ))
+            }
         </div>
+
     );
 }

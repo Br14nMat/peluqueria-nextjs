@@ -3,18 +3,17 @@ import { useCurrentUser } from '@/hooks/auth/useCurrentUser';
 import { createFeedback, Feedback, FeedbackDTO, getFeedbackByHairdresser } from '@/services/feedback.service';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useAppDispatch, useAppSelector } from '@/store';
-import { addFeedback, fetchFeedbackByHairdresser } from '@/store/feedback/feedbackSlice';
+
 
 export default function Comentarios() {
     const { user: currentUser } = useCurrentUser();
     const [hairdresser, setHairdresser] = useState<any | null>(null);
     const [comentario, setComentario] = useState("");
     const [rating, setRating] = useState(1);
-    const dispatch = useAppDispatch();
+    const [feedbacks, setFeedbacks] = useState<Feedback[]>([]);
 
-    const feedbacks = useAppSelector((state) => state.feedbacks.list);
-    
+    const router = useRouter();
+
     useEffect(() => {
         const storedHairdresser = localStorage.getItem('hairdresser');
         if (storedHairdresser) {
@@ -26,7 +25,8 @@ export default function Comentarios() {
         async function loadComentarios() {
             try {
                 if (!currentUser?.token || !hairdresser?.id) return;
-                dispatch(fetchFeedbackByHairdresser({ hairdresserId: hairdresser.id, token: currentUser.token }));
+                const data = await getFeedbackByHairdresser(hairdresser.id, currentUser.token);
+                setFeedbacks(data);
             } catch (error) {
                 console.error("Error al obtener los comentarios", error);
             }
@@ -35,10 +35,10 @@ export default function Comentarios() {
         if (hairdresser && currentUser?.token) {
             loadComentarios();
         }
-    }, [currentUser, hairdresser, dispatch]);
+    }, [currentUser, hairdresser]);
 
     const handleSubmit = () => {
-        console.info(hairdresser);
+        console.info(hairdresser)
 
         const feedbackData: FeedbackDTO = {
             id: '',
@@ -46,13 +46,15 @@ export default function Comentarios() {
             comment: comentario,
             clientId: currentUser?.user_id || '',
             hairdresserId: hairdresser.id,
-        };
+        }
 
-        dispatch(addFeedback({ f: feedbackData, token: currentUser?.token }))
+
+        createFeedback(feedbackData, currentUser?.token)
             .then(() => {
-                alert('Comentario creado exitosamente');
+                alert('Comentario creado exitosamente')
+                router.push('/comentarios')
             })
-            .catch((e) => console.error(e));
+            .catch((e) => console.error(e))
     };
 
     const calculateAverage = () => {
@@ -77,7 +79,7 @@ export default function Comentarios() {
                         <h1 className='text-azulOscuro py-2'>Agregar reseña</h1>
                         <textarea
                             onChange={(e) => setComentario(e.target.value)}
-                            className="text-azulOscuro w-full h-24 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+                            className="w-full h-24 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
                             placeholder="Escriba su comentario aquí"
                         ></textarea>
 
@@ -109,23 +111,18 @@ export default function Comentarios() {
                     </form>
                 </div>
 
-                <div className="w-1/2">
+                <div className="w-1/2 space-y-2">
                     <h1 className='text-azulOscuro'>Comentarios</h1>
-                    <div className="max-h-96 overflow-y-auto space-y-2">
-                        {feedbacks.map((feedback, index) => (
-                            <div key={index} className="bg-gray-100 p-4 rounded-md shadow">
-                                <div className="flex items-center space-x-1 text-rosadoOscuro">
-                                    {feedback.rating} <span>★</span>
-                                </div>
-                                <p className="text-black mt-1">
-                                    {feedback.client.name}:
-                                </p>
-                                <p className="text-gray-600 mt-1">
-                                    {feedback.comment}
-                                </p>
+                    {feedbacks.map((feedback, index) => (
+                        <div key={index} className="bg-gray-100 p-4 rounded-md shadow">
+                            <div className="flex items-center space-x-1 text-rosadoOscuro">
+                                {feedback.rating} <span>★</span>
                             </div>
-                        ))}
-                    </div>
+                            <p className="text-gray-600 mt-1">
+                               {feedback.comment}
+                            </p>
+                        </div>
+                    ))}
                 </div>
             </div>
         </div>

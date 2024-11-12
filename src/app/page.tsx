@@ -4,9 +4,6 @@ import Image from "next/image";
 import { Navbar } from "./components/nav-bar/NavBar";
 import styles from "./home.module.css";
 import { useRouter } from "next/navigation";
-import { useAppDispatch } from "@/store";
-import { fetchAllUsers } from "@/store/user/userSlice";
-import React, { useEffect } from 'react';
 
 
 export default function Home() {
