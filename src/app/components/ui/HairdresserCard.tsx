@@ -33,7 +33,10 @@ const HairdresserCard: React.FC<HairdresserCardProps> = ({ id, name, email }) =>
           <p className="text-azulOscuro text-sm mx-5 my-3 overflow-hidden text-ellipsis text-nowrap">
             {email}
           </p>
-          <button onClick={() => handleReseñar()} className="bg-rosado text-white  hover:bg-azulOscuro  flex items-center justify-center p-3 rounded-lg transition-all mx-4">
+          <button onClick={() => handleReseñar()} className="bg-rosado text-white  hover:bg-azulOscuro  flex items-center justify-center p-3 rounded-lg transition-all mx-4"
+            data-cy={`reseñar-button-${name}`}
+            >
+          
             Reseñar
           </button>
         </div>

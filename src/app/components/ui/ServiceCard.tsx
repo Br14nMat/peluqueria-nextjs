@@ -52,7 +52,9 @@ const ServiceCard: React.FC<ServiceCardProps> = ({id, name, description, price, 
               <button
                 onClick={handleReservarClick}
                 className="bg-rosado hover:bg-azulClaro flex items-center justify-center p-3 rounded-lg text-white transition-all mx-4"
+                data-cy={`reservar-button-${name}`} 
               >
+                
                 Reservar
               </button>
             </div>
