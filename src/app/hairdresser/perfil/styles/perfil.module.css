@@ -70,13 +70,7 @@
 }
 
 .backButton {
-    background-color: #4a4a4a;
-    color: white;
-    border: none;
-    padding: 0.8rem 2rem;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 1rem;
+    color: #000000;
 }
 
 .calificacionButton {
@@ -92,9 +86,15 @@
 
 .calificacionDisplay {
     display: flex;
+    flex-direction: row;
     align-items: center;
-    gap: 10px;
-    margin-top: 15px;
+    justify-content: flex-end;
+    min-height: 300px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 2rem 8rem 2rem 2rem;
+    margin-right: 4rem;
 }
 
 .calificacionNumero {
@@ -236,5 +236,25 @@
 
 /* Si necesitas que algún botón específico mantenga un color diferente, puedes sobrescribirlo así: */
 .backButton {
-  color: #whatever-color-you-want;
+  color: #0000;
 }
+
+.calendarContainer :global(.fc-timegrid-event-harness) {
+  height: auto !important;
+  margin-bottom: -1px !important;
+}
+
+.calendarContainer :global(.fc-timegrid-event) {
+  height: calc(100% + 40px) !important;
+  min-height: unset !important;
+  margin: 0 !important;
+  padding: 4px !important;
+  font-size: 0.9em !important;
+  background-color: #3788d8;
+  border: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+
+
