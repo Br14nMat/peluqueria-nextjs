@@ -6,10 +6,11 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { User } from '@/interface/user';
-import { getHaidressers } from '@/services/hairdresser.service';
 import { createReservation } from '@/services/reservation.service';
 import { useCurrentUser } from '@/hooks/auth/useCurrentUser';
 import { useRouter } from 'next/navigation';
+import { useAppDispatch, useAppSelector } from "@/store";
+import { fetchAllUsers, getHaidressers } from "@/store/user/userSlice";
 
 
 const Calendario = () => {
@@ -20,23 +21,19 @@ const Calendario = () => {
   const [reservationDate, setReservationDate] = useState<Date>();
   const [endDate, setEndDate] = useState<Date>();
 
-  const [hairdressers, setHairdressers] = useState<User[]>([]);
   const [selectedHairdresser, setSelectedHairdresser] = useState<any | null>(null);
 
   const { user:currentUser } = useCurrentUser();
 
+  const hairdressers = useAppSelector(getHaidressers);
+  const dispatch = useAppDispatch();
+
   useEffect(() => {
     const storedService = localStorage.getItem('servicio');
+    dispatch(fetchAllUsers());
     if (storedService) {
       setServicio(JSON.parse(storedService));
     }
-
-    const fetchHairdressers = async () => {
-      const data = await getHaidressers();
-      setHairdressers(data);
-    };
-
-    fetchHairdressers();
 
   }, []);
 
@@ -72,7 +69,7 @@ const Calendario = () => {
     createReservation(reservationData, currentUser?.token)
         .then(reservation => {
             alert('Reservación creada con exito!')
-            router.push('/servicios')
+            router.push('/reservas')
         })
         .catch(error => {
             console.error('Error creating reservation:', error);

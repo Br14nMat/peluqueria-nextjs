@@ -1,25 +1,28 @@
 "use client";
 
 import Image from "next/image";
-import { Navbar } from "./components/nav-bar/NavBar";
-import styles from "./home.module.css";
+import styles from "../home.module.css";
 import { useRouter } from "next/navigation";
+import { Navbar } from "./components/NavBar";
+import React, { useEffect } from 'react';
 import { useAppDispatch } from "@/store";
 import { fetchAllUsers } from "@/store/user/userSlice";
-import React, { useEffect } from 'react';
 
 
 export default function Home() {
 
   const router = useRouter();
 
-  const handleReservar = () => {
-    router.push("/servicios")
+  const handlePeluqueros = () => {
+    router.push("/admin/peluqueros")
+  }
+
+  const handleClientes = () => {
+    router.push("/admin/clientes")
   }
 
   return (
     <div className={styles.pageContainer}>
-      <Navbar />
       
       <div className={styles.backgroundContainer}>
         <Image
@@ -32,7 +35,8 @@ export default function Home() {
 
         <div className={styles.textContainer}>
           <h1 className={styles.title}>Hair Vibe</h1>
-          <button onClick={handleReservar} className={styles.reserveButton}>Reservar</button>
+          <button onClick={handlePeluqueros} className="bg-rosado hover:bg-rosadoOscuro justify-center p-3 rounded-lg text-white transition-all mx-4">Peluqueros</button>
+          <button onClick={handleClientes} className="bg-rosado hover:bg-rosadoOscuro justify-center p-3 rounded-lg text-white transition-all mx-4">Clientes</button>
         </div>
       </div>
     </div>

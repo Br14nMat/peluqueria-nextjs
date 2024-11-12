@@ -1,29 +1,44 @@
 "use client";
 
-import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 import { useLogin } from "@/hooks/auth/useLogin";
 import Link from "next/link";
+import { useAppDispatch, useAppSelector } from "@/store";
+import { fetchAllUsers } from "@/store/user/userSlice";
+import { useCurrentUser } from "@/hooks/auth/useCurrentUser";
+import React, { useEffect, useState } from "react";
+import { useLogout } from "@/hooks/auth/useLogout";
 
 
 export default function usernamePage(){
     const [username, setUsername] = useState(""); 
     const [password, setPassword] = useState("");
+
+    const dispatch = useAppDispatch();
     const router = useRouter();
     const { login } = useLogin();
+    const { logout } = useLogout();
+    const { user:currentUser } = useCurrentUser();
+
+
+    useEffect(() => {
+        logout();
+    }, []);
 
     const onSubmit = () => {
         if (!username || !password)
             alert("Please enter username")
         else{
             let res = login(username, password)
-                .then(() => router.push("/"))
+                .then(() => {
+                    router.push("/")
+                }
+                )
                 .catch( (e: Error) => {
                     console.error(e)
                     setUsername("");
                     setPassword("");                    
-                    alert("Invalid Credentials")})
+                    alert("Login error")})
 
         }
     }

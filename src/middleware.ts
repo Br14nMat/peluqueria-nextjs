@@ -3,8 +3,6 @@ import { NextRequest, NextResponse } from "next/server";
 
 export default function middleware(request: NextRequest){
 
-    console.log(request.cookies.get("currentUser"))
-
     if(!request.cookies.get("currentUser")?.value && request.nextUrl.pathname !== '/login' && request.nextUrl.pathname !== '/register')
         return NextResponse.redirect(new URL("/login", request.url));
 
@@ -32,8 +30,8 @@ export default function middleware(request: NextRequest){
     
     if (
         (!!token && pathname.startsWith("/admin") && role !== "admin") ||
-        (!!token && pathname.startsWith("/haidresser") && role !== "haidresser") ||
-        (!!token && !pathname.startsWith("/admin") && !pathname.startsWith("/peluquero") && role !== "client")
+        (!!token && pathname.startsWith("/hairdresser") && role !== "hairdresser") ||
+        (!!token && !pathname.startsWith("/admin") && !pathname.startsWith("/hairdresser") && role !== "client")
     ){
         return Redirect();
     }

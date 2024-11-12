@@ -1,29 +1,27 @@
 "use client";
 
 import Image from "next/image";
-import { Navbar } from "./components/nav-bar/NavBar";
-import styles from "./home.module.css";
+import { Navbar } from "@/app/hairdresser/components/nav-bar/NavBar";
+import styles from "./styles/hairdresserHome.module.css";
 import { useRouter } from "next/navigation";
-import { useAppDispatch } from "@/store";
-import { fetchAllUsers } from "@/store/user/userSlice";
-import React, { useEffect } from 'react';
 
-
-export default function Home() {
-
+export default function HairdresserHome() {
   const router = useRouter();
 
   const handleReservar = () => {
-    router.push("/servicios")
-  }
+    router.push("/servicios");
+  };
+
+  const handlePerfil = () => {
+    router.push("/perfil");
+  };
 
   return (
     <div className={styles.pageContainer}>
       <Navbar />
-      
       <div className={styles.backgroundContainer}>
         <Image
-          src="/home.jpg" 
+          src="/home.jpg"
           alt="Background"
           layout="fill"
           objectFit="cover"
@@ -32,7 +30,9 @@ export default function Home() {
 
         <div className={styles.textContainer}>
           <h1 className={styles.title}>Hair Vibe</h1>
-          <button onClick={handleReservar} className={styles.reserveButton}>Reservar</button>
+          
+          
+          
         </div>
       </div>
     </div>

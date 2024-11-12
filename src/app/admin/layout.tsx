@@ -1,5 +1,5 @@
 import { Providers } from "@/store/Providers";
-import { Navbar } from "../components/nav-bar/NavBar";
+import { Navbar } from "./components/NavBar";
 
 export default function GeneralLayout({
  children
@@ -7,7 +7,7 @@ export default function GeneralLayout({
  children: React.ReactNode;
 }) {
   return (
-    <div className="bg-white h-screen flex flex-col">
+    <div className="bg-white h-screen flex flex-col overflow-hidden">
       <Navbar></Navbar>
       <Providers>
         {children}
