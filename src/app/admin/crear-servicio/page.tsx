@@ -1,3 +1,5 @@
+"use client";
+
 import { Service } from '@/services/services.service';
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from "@/store";
