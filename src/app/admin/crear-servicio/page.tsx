@@ -1,5 +1,3 @@
-"use client";
-
 import { Service } from '@/services/services.service';
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from "@/store";
@@ -20,9 +18,6 @@ export default function CrearServicio () {
     const [price, setPrice] = useState(0);
     const [duration, setDuration] = useState(0);
 
-    const router = useRouter();
-
-
     const handleSubmit = () => {
 
         const serviceData: Service = {
@@ -37,7 +32,6 @@ export default function CrearServicio () {
         dispatch(addService({ s: serviceData, token: currentUser?.token }))
             .then(() => {
                 alert('Servicio creado exitosamente');
-                router.push("/servicios")
             })
             .catch((e) => console.error(e));
 
