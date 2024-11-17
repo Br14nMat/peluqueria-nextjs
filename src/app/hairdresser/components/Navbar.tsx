@@ -2,15 +2,8 @@
 
 import { BellFillIcon, HomeIcon, SignOutIcon  } from "@primer/octicons-react";
 import Link from "next/link";
-import { ActiveLink } from "../active-link/ActiveLink";
 import { useRouter } from "next/navigation";
 import { useLogout } from "@/hooks/auth/useLogout";
-
-
-const navItems = [
-    {name:'Peluqueros', path: '/peluqueros'},
-    {name:'Reservas', path: '/reservas'},
-]
 
 export const Navbar = () => {
 
@@ -23,7 +16,7 @@ export const Navbar = () => {
     }
 
     const handleBell = () => {
-        router.push('/notificaciones')
+        router.push('/hairdresser/notificaciones')
     }
 
     return (
@@ -33,11 +26,6 @@ export const Navbar = () => {
             <span>Inicio</span>
         </Link>
         <div className="flex flex-1"></div>
-        {
-            navItems.map(item => (
-                <ActiveLink  key={item.path} {...item}/>
-            ))
-        }
 
         <button
         onClick={handleBell}
@@ -45,6 +33,7 @@ export const Navbar = () => {
         >
             <BellFillIcon className="mr-2" />
         </button>
+
         
         <button
         onClick={handleLogout}

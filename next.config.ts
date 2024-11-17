@@ -7,7 +7,8 @@ const nextConfig: NextConfig = {
 
 module.exports = {
   env: {
-    BACKEND_URL: 'https://peluqueria-nest.onrender.com',
+    //BACKEND_URL: 'https://peluqueria-nest.onrender.com',
+    BACKEND_URL: 'http://localhost:3000'
   },
   images: {
     domains: ['haircutday.com'],

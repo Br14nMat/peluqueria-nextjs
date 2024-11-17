@@ -30,8 +30,8 @@ export default function middleware(request: NextRequest){
     
     if (
         (!!token && pathname.startsWith("/admin") && role !== "admin") ||
-        (!!token && pathname.startsWith("/haidresser") && role !== "haidresser") ||
-        (!!token && !pathname.startsWith("/admin") && !pathname.startsWith("/peluquero") && role !== "client")
+        (!!token && pathname.startsWith("/hairdresser") && role !== "hairdresser") ||
+        (!!token && !pathname.startsWith("/admin") && !pathname.startsWith("/hairdresser") && role !== "client")
     ){
         return Redirect();
     }

@@ -29,8 +29,6 @@ export const fetchReservationsByClient = createAsyncThunk<
   async ({ clientId, token }) => {
     if (!token) throw new Error('Token is required');
     const reservations = await getReservationsByClient(clientId, token);
-    console.log("reservas: " + clientId)
-    console.log(reservations);
     return reservations;
   }
 );
